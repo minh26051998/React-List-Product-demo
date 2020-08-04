@@ -9,6 +9,8 @@ import {
   Link
 } from "react-router-dom";
 
+import { CartContext } from '../contexts/Cart';
+
 
 export default class Topmenu extends Component {
     render() {
@@ -28,7 +30,11 @@ export default class Topmenu extends Component {
                     </NavItem>
                     <NavItem>
                       <NavLink className="text-danger" href="#">
-                        <Link className="text-danger" to="/products">Cart (0)</Link>
+                        <CartContext.Consumer>
+                          {({cartItems}) => (
+                            <Link className="text-danger" to="/products">Cart ({cartItems.length})</Link>
+                          )}
+                        </CartContext.Consumer>
                       </NavLink>
                     </NavItem>
                   </Nav>

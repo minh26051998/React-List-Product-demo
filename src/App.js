@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Topmenu from "./components/topmenu";
 import Products from "./components/products";
 
+import { CartProvider } from './contexts/Cart';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,24 +17,25 @@ import {
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Topmenu>
+    <CartProvider>
+      <Router>
+        <div className="App">
+          <Topmenu>
 
-        </Topmenu>
-      </div>
-    
-
-      <Switch>
-        <Route path="/products">
-          <Product />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
-);
+          </Topmenu>
+        </div>
+      
+        <Switch>
+          <Route path="/products">
+            <Product />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    </CartProvider>
+  );
 }
 
 function Home() {
